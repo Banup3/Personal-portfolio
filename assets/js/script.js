@@ -157,3 +157,21 @@ for (let i = 0; i < navigationLinks.length; i++) {
 
   });
 }
+
+form.addEventListener("submit", function(event) {
+  event.preventDefault(); 
+
+  console.log("Sending message..."); 
+
+  emailjs.sendForm("service_bp1yqyb", "template_15goa3s", this)
+    .then(() => {
+      alert("✅ Message sent successfully!");
+      form.reset();
+      formBtn.setAttribute("disabled", ""); 
+    })
+    .catch((err) => {
+      console.error("❌ FAILED...", err);
+      alert("Error sending message: " + JSON.stringify(err));
+    });
+});
+
